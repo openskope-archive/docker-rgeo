@@ -1,7 +1,9 @@
-from openskope/gdal:0.1.0
+from openskope/gdal:0.1.1
 
 ARG DEBIAN_FRONTEND=noninteractive
 USER root
+
+ENV DOCKER_IMAGE_NAME openskope/rgeo
 
 RUN echo "***** install R directly from CRAN apt server *****"                                      \
  && echo deb http://cran.rstudio.com/bin/linux/ubuntu xenial/ > /etc/apt/sources.list.d/cran.list   \
@@ -31,4 +33,9 @@ RUN echo "***** install R directly from CRAN apt server *****"                  
 
 USER skope
 
-CMD echo "Usage: docker run openskope/rgeospatial Rscript <r-script-file> [r-script-arguments]"
+ENV SELFTEST_DIR ${SELFTEST_BASE}/${DOCKER_IMAGE_NAME}
+COPY ./selftest/expected.txt ${SELFTEST_BASE}
+COPY ./selftest/test.sh ${SELFTEST_DIR}/
+RUN ${SELFTEST_BASE}/runtest.sh
+
+CMD echo "Usage: docker run openskope/rgeo Rscript <r-script-file> [r-script-arguments]"
