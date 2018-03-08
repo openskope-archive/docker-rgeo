@@ -6,6 +6,9 @@ echo    "llibgeos-3.5.0 package version  : $(dpkg -s libgeos-3.5.0 | grep Versio
 echo    "libgeos-dev apt package version : $(dpkg -s libgeos-dev| grep Version | awk '{print $2}')"
 echo    "netcdf-bin package version      : $(dpkg -s netcdf-bin | grep Version | awk '{print $2}')"
 echo    "libnetcdf-dev package version   : $(dpkg -s libnetcdf-dev | grep Version | awk '{print $2}')"
+echo    "libcurl4-openssl-dev version    : $(dpkg -s libcurl4-openssl-dev | grep Version | awk '{print $2}')"
+echo    "llibssl-dev package version     : $(dpkg -s libssl-dev| grep Version | awk '{print $2}')"
+echo    "libxml2-dev package version     : $(dpkg -s libxml2-dev | grep Version | awk '{print $2}')"
 
 echo    "R version                       : $(R --version | grep 'R version')"
 
@@ -16,4 +19,6 @@ echo -n "optparse r package version      : "; echo $(Rscript -e "cat(as.characte
 echo -n "raster r package version        : "; echo $(Rscript -e "cat(as.character(packageVersion('raster')))")
 echo -n "rgdal r package version         : "; echo $(Rscript -e "cat(as.character(packageVersion('rgdal')))")
 echo -n "rgeos r package version         : "; echo $(Rscript -e "cat(as.character(packageVersion('rgeos')))")
+echo -n "tidyverse r package version     : "; echo $(Rscript -e "cat(as.character(packageVersion('tidyverse')))")
+echo -n "XML r package version           : "; echo $(Rscript -e "cat(as.character(packageVersion('XML')))")
 
